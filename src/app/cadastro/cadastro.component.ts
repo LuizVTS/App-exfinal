@@ -19,7 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
           </mat-form-field>
   
           <div class="botoes">
-            <button mat-raised-button color="primary" (click)="salvar()">Salvarar</button>
+            <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
             <button mat-raised-button color="warn" routerLink="/">Cancelar</button>
           </div>
         </mat-card-content>
