@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { DadosService } from '../services/dados.service';
 
 
 @Component({
@@ -42,24 +44,26 @@ export class CadastroComponent {
   nome = '';
   idade = '';
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private dadosService: DadosService
+  ) { }
 
 
   salvar() {
-    if (!this.nome || !this.idade) {
-      this.snackBar.open('Preencha todos os campos obrigatórios!', 'Fechar', {
-        duration: 3000,
-        panelClass: ['error-snackbar']
-      });
-      return;
-    }
-
-    console.log({ nome: this.nome, idade: this.idade });
-
-    this.snackBar.open('Cadastro salvo com sucesso!', 'Fechar', {
-      duration: 3000,
-      panelClass: ['success-snackbar']
+    this.dadosService.adicionarItem({
+      titulo: this.nome,
+      autor: this.idade
     });
-  }
 
+    this.snackBar.open('Cliente salvo com sucesso!', 'Fechar', {
+      duration: 2000
+    });
+
+    this.router.navigate(['/']);
+  }
 }
+
+
+
